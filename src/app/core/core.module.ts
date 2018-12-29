@@ -1,6 +1,5 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/shared.module';
 import { PublicModule } from '../public/public.module';
 import { ProtectedModule } from '../protected/protected.module';
 
@@ -8,7 +7,6 @@ import { ProtectedModule } from '../protected/protected.module';
 	declarations: [],
 	imports: [
 		CommonModule,
-		SharedModule,
 		PublicModule,
 		ProtectedModule
 	]
