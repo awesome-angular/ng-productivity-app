@@ -2,3 +2,42 @@
 @import "../node_modules/bootswatch/dist/materia/variables";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "../node_modules/bootswatch/dist/materia/bootswatch";
+
+/* Material icons */
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules to set different colors to icons. */
+.material-icons.md-grey { color: rgb(155, 155, 155); cursor: pointer; }
+.material-icons.md-grey:hover { color: rgb(105, 105, 105) !important; }
+.material-icons.md-dark-grey { color: rgb(85, 85, 85); cursor: pointer; }
+.material-icons.md-dark-grey:hover { color: rgb(65, 65, 65) !important; }
