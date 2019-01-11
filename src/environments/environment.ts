@@ -5,12 +5,12 @@
 export const environment = {
 	production: false,
 	firebase: {
-		apiKey: '<your-key>',
-		authDomain: '<your-project-authdomain>',
-		databaseURL: '<your-database-URL>',
-		projectId: '<your-project-id>',
-		storageBucket: '<your-storage-bucket>',
-		messagingSenderId: '<your-messaging-sender-id>'
+		apiKey: 'AIzaSyAkgLyl4GXcHXe1Y7NhjPpntXVQ0fCsOuc',
+		authDomain: 'ng-awesome-list.firebaseapp.com',
+		databaseURL: 'https://ng-awesome-list.firebaseio.com',
+		projectId: 'ng-awesome-list',
+		storageBucket: 'ng-awesome-list.appspot.com',
+		messagingSenderId: '1039499474549'
 	}
 };
 
