@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { PublicRoutingModule } from './public-routing.module';
-import { HomepageModule } from './homepage/homepage.module';
+import { HomeModule } from './home/home.module';
 import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
 
@@ -11,7 +11,7 @@ import { LoginModule } from './login/login.module';
 	imports: [
 		SharedModule,
 		PublicRoutingModule,
-		HomepageModule,
+		HomeModule,
 		RegisterModule,
 		LoginModule
 	]

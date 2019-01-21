@@ -7,4 +7,4 @@ import { SharedModule } from 'src/app/shared/shared.module';
 		SharedModule
 	]
 })
-export class HomepageModule { }
+export class HomeModule { }
