@@ -4,10 +4,11 @@ import { PublicModule } from '../public/public.module';
 import { ProtectedModule } from '../protected/protected.module';
 import { FirebaseModule } from './modules/firebase.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
-	declarations: [NavbarComponent],
+	declarations: [NavbarComponent, FooterComponent],
 	imports: [
 		CommonModule,
 		FirebaseModule,
@@ -15,7 +16,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 		ProtectedModule
 	],
 	exports: [
-		NavbarComponent
+		NavbarComponent,
+		FooterComponent,
 	]
 })
 export class CoreModule {
