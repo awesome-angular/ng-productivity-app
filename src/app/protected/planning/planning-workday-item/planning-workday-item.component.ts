@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PlanningWorkdayItemComponent implements OnInit {
 
-	@Input() workday;
+	@Input('workday') currentWorkday;
 
 	constructor() { }
 
