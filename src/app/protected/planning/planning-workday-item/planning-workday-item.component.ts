@@ -7,6 +7,18 @@ import { Component, Input } from '@angular/core';
 })
 export class PlanningWorkdayItemComponent {
 
-	@Input('workday') currentWorkday;
+	private currentWorkday;
+
+	@Input()
+	set workday(workday) {
+		this.currentWorkday = workday || {};
+
+		if ('Lundi' === workday.dueDate) {
+			this.currentWorkday.dueDate += ' (Aujourd\'hui)';
+		}
+
+	}
+
+	get workday() { return this.workday; }
 
 }
