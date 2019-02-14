@@ -36,7 +36,12 @@ export class PlanningWorkdayItemComponent implements OnChanges {
 				break;
 			}
 		}
+	}
 
+	removeWorkday() {
+		this.dueDate = '';
+		this.doneTasks = 0;
+		this.remainingTasks = 0;
 	}
 
 }
