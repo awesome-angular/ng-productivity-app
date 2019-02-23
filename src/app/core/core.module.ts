@@ -5,10 +5,11 @@ import { ProtectedModule } from '../protected/protected.module';
 import { FirebaseModule } from './modules/firebase.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
-	declarations: [NavbarComponent, FooterComponent],
+	declarations: [NavbarComponent, FooterComponent, PageNotFoundComponent],
 	imports: [
 		CommonModule,
 		FirebaseModule,
@@ -18,6 +19,7 @@ import { FooterComponent } from './components/footer/footer.component';
 	exports: [
 		NavbarComponent,
 		FooterComponent,
+		PageNotFoundComponent,
 	]
 })
 export class CoreModule {
