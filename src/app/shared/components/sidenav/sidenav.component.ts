@@ -8,11 +8,12 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent implements OnInit {
 
-	private dashboardPath: string = 'dashboard';
-	private planningPath: string = 'planning';
-	private workdayPath: string = 'workday';
-	private profilPath: string = 'profil';
-	private parametersPath: string = 'parameters';
+	private prefix: string = 'app';
+	private dashboardPath: string = `${this.prefix}/dashboard`;
+	private planningPath: string = `${this.prefix}/planning`;
+	private workdayPath: string = `${this.prefix}/workday`;
+	private profilPath: string = `${this.prefix}/profil`;
+	private parametersPath: string = `${this.prefix}/parameters`;
 
 	constructor(private router: Router) { }
 
@@ -21,6 +22,10 @@ export class SidenavComponent implements OnInit {
 
 	private navigate(page: string): void {
 		this.router.navigate([page]);
+	}
+
+	public isActive(page: string): boolean {
+		return this.router.isActive(page, true);
 	}
 
 }

@@ -1,30 +1,27 @@
-<!-- TODO: replace custom style rules by Bootstrap class -->
 <div class="sticky-top">
   <div class="nav flex-column">
-
-    <img class="card-img-top" src="assets/img/homepage-jumbotron.jpg" alt="Card image cap">
-
+    <img class="card-img-top" src="assets/img/home-banner.jpg" alt="sidenav banner">
     <div class="card-header">
       Menu
     </div>
     <ul class="list-group list-group-flush">
-      <li (click)="navigate(dashboardPath)" class="list-group-item">
+      <li (click)="navigate(dashboardPath)" [class.list-group-item-success]="isActive(dashboardPath)" class="list-group-item">
         <i class="material-icons align-bottom mr-1">home</i>
         Tableau de bord
       </li>
-      <li (click)="navigate(planningPath)" class="list-group-item">
+      <li (click)="navigate(planningPath)" [class.list-group-item-success]="isActive(planningPath)" class="list-group-item">
         <i class="material-icons align-bottom mr-1">event_note</i>
         Planning
       </li>
-      <li (click)="navigate(workdayPath)" class="list-group-item">
+      <li (click)="navigate(workdayPath)" [class.list-group-item-success]="isActive(workdayPath)" class="list-group-item">
         <i class="material-icons align-bottom mr-1">today</i>
         Tâches du jour
       </li>
-      <li (click)="navigate(profilPath)" class="list-group-item">
+      <li (click)="navigate(profilPath)" [class.list-group-item-success]="isActive(profilPath)" class="list-group-item">
         <i class="material-icons align-bottom mr-1">person</i>
         Profil
       </li>
-      <li (click)="navigate(parametersPath)" class="list-group-item">
+      <li (click)="navigate(parametersPath)" [class.list-group-item-success]="isActive(parametersPath)" class="list-group-item">
         <i class="material-icons align-bottom mr-1">settings</i>
         Paramètres
       </li>
