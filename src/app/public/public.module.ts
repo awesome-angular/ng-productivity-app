@@ -12,8 +12,7 @@ import { LoginModule } from './login/login.module';
 		SharedModule,
 		PublicRoutingModule,
 		HomeModule,
-		RegisterModule,
-		LoginModule
+		RegisterModule
 	]
 })
 export class PublicModule { }

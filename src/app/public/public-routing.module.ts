@@ -6,7 +6,10 @@ import { RegisterComponent } from './register/register/register.component';
 
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
-	{ path: 'login', component: LoginComponent },
+	{
+		path: 'login',
+		loadChildren: './login/login.module#LoginModule'
+	},
 	{ path: 'register', component: RegisterComponent }
 ];
 
