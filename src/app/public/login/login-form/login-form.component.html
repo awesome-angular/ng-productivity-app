@@ -1,0 +1,30 @@
+<form novalidate [formGroup]="loginForm" (ngSubmit)="submit()" class="card-body">
+
+  <!-- Email field -->
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" type="email" required formControlName="email" class="form-control" placeholder="Votre email" autocorrect="off" autocomplete="off"/>
+    <small *ngIf="email.errors && email.dirty" class="form-text text-muted">
+      <span [hidden]="!email.errors.required">Email requis.</span>
+      <span [hidden]="!email.errors.email">Entrez une adresse email valide.</span>
+    </small>
+  </div>
+
+  <!-- Password field -->
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" type="password" required formControlName="password" class="form-control" placeholder="Votre mot de passe"/>
+    <small *ngIf="password.errors && password.dirty" class="form-text text-muted">
+      <span [hidden]="!password.errors.required">Mot de passe requis.</span>
+      <span [hidden]="!password.errors.minlength">Le mot de passe doit faire plus de 6 caractères.</span>
+      <span [hidden]="!password.errors.maxlength">Le mot de passe doit faire moins de 20 caractères.</span>
+    </small>
+  </div>
+
+  <!-- Submit form -->
+  <p class="text-center py-3">
+    <button type="submit" [disabled]="!loginForm.valid" class="btn" [ngClass]="{'btn-success' : loginForm.valid, 'btn-default' : !loginForm.valid}">
+      connexion <i class="material-icons align-middle">arrow_right_alt</i>
+    </button>
+  </p>
+</form>
