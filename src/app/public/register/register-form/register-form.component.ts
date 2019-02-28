@@ -43,6 +43,7 @@ export class RegisterFormComponent implements OnInit {
 		console.info(this.name.value);
 		console.info(this.email.value);
 		console.info(this.password.value);
+		this.router.navigate(['/app/dashboard']);
 	}
 
 }
