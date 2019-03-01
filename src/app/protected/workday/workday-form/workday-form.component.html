@@ -2,4 +2,7 @@
   <al-workday-form-date [dueDate]="dueDate"></al-workday-form-date>
   <al-workday-form-tasks [workdayForm]="workdayForm" [tasks]="tasks"></al-workday-form-tasks>
   <al-workday-form-notes [notes]="notes"></al-workday-form-notes>
+  <div class="text-right">
+    <button (click)="submit()" type="submit" class="btn btn-success btn-lg" [disabled]="workdayForm.invalid">Sauvegarder</button>
+  </div>
 </form>

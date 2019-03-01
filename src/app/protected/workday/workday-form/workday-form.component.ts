@@ -28,4 +28,8 @@ export class WorkdayFormComponent implements OnInit {
 		});
 	}
 
+	submit(): void {
+		console.info(this.workdayForm.value);
+	}
+
 }
