@@ -14,12 +14,6 @@ export class WorkdayFormComponent implements OnInit {
 
 	ngOnInit() {
 		this.workdayForm = this.createWorkdayForm();
-
-		// exemple
-		let taskGroup = this.fb.group({
-			'title': 'Ecrire un article sur awesome-angular.com'
-		});
-		this.tasks.push(taskGroup);
 	}
 
 	get dueDate() { return this.workdayForm.get('dueDate') }
@@ -32,10 +26,6 @@ export class WorkdayFormComponent implements OnInit {
 			'tasks': this.fb.array([]),
 			'notes': ''
 		});
-	}
-
-	submit() {
-		console.info(this.workdayForm.value);
 	}
 
 }
