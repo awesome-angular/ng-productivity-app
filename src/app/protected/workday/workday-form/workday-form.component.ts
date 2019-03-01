@@ -22,9 +22,16 @@ export class WorkdayFormComponent implements OnInit {
 
 	createWorkdayForm(): FormGroup {
 		return this.fb.group({
-			'dueDate': '',
-			'tasks': this.fb.array([]),
-			'notes': ''
+			'dueDate': ['', [
+				Validators.required
+			]],
+			'tasks': this.fb.array([], [
+				Validators.minLength(1),
+				Validators.maxLength(6)
+			]),
+			'notes': ['', [
+				Validators.maxLength(1000)
+			]]
 		});
 	}
 
