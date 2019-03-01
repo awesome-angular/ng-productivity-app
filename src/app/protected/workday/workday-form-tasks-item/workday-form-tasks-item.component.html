@@ -2,4 +2,9 @@
   <div class="col-sm-6 px-0">
     <input formControlName="title" type="text" class="form-control">
   </div>
+  <div class="col-sm-5">
+    <span *ngIf="isLast && !isFirst" (click)="removeTask(i)">
+      <i class="material-icons md-18 md-grey align-middle">clear</i>
+    </span>
+  </div>
 </div>

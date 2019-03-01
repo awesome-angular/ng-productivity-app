@@ -1,8 +1,12 @@
 <div [formGroup]="workdayForm">
   <div formArrayName="tasks">
     <al-workday-form-tasks-item
-      *ngFor="let task of tasks.controls"
-      [task]="task">
+      *ngFor="let task of tasks.controls; let index; first as isFirst; last as isLast;"
+      [index]="index"
+      [isFirst]="isFirst"
+      [isLast]="isLast"
+      [task]="task"
+      (removedTask)="onRemovedTask()">
     </al-workday-form-tasks-item>
   </div>
   <div class="text-center">

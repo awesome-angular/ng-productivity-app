@@ -23,4 +23,8 @@ export class WorkdayFormTasksComponent implements OnInit {
 		this.tasks.push(taskGroup);
 	}
 
+	onRemovedTask(index: number) {
+		this.tasks.removeAt(index);
+	}
+
 }
