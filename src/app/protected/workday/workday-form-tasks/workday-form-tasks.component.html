@@ -1,3 +1,8 @@
-<p>
-  workday-form-tasks works!
-</p>
+<div [formGroup]="workdayForm">
+  <div formArrayName="tasks">
+    <al-workday-form-tasks-item
+      *ngFor="let task of tasks.controls"
+      [task]="task">
+    </al-workday-form-tasks-item>
+  </div>
+</div>
