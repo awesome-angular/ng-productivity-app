@@ -26,7 +26,7 @@ export class WorkdayFormComponent implements OnInit {
 				Validators.required
 			]],
 			'tasks': this.fb.array([], [
-				Validators.minLength(1),
+				Validators.required,
 				Validators.maxLength(6)
 			]),
 			'notes': ['', [
