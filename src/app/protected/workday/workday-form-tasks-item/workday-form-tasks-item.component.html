@@ -3,7 +3,7 @@
     <input formControlName="title" type="text" class="form-control">
   </div>
   <div class="col-sm-5">
-    <span *ngIf="isLast && !isFirst" (click)="removeTask(i)">
+    <span *ngIf="isLast && !isFirst" (click)="removeTask(index)">
       <i class="material-icons md-18 md-grey align-middle">clear</i>
     </span>
   </div>
