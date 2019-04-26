@@ -6,10 +6,11 @@ import { FirebaseModule } from './modules/firebase.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 @NgModule({
-	declarations: [NavbarComponent, FooterComponent, PageNotFoundComponent],
+	declarations: [NavbarComponent, FooterComponent, PageNotFoundComponent, LoaderComponent],
 	imports: [
 		CommonModule,
 		FirebaseModule,
@@ -20,6 +21,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 		NavbarComponent,
 		FooterComponent,
 		PageNotFoundComponent,
+		LoaderComponent,
 	]
 })
 export class CoreModule {
