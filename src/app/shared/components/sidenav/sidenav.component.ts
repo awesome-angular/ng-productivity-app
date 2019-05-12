@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent implements OnInit {
 
-	public prefix: string = 'app';
-	public dashboardPath: string = `${this.prefix}/dashboard`;
-	public planningPath: string = `${this.prefix}/planning`;
-	public workdayPath: string = `${this.prefix}/workday`;
-	public profilPath: string = `${this.prefix}/profil`;
-	public parametersPath: string = `${this.prefix}/parameters`;
+	public prefix = 'app';
+	public dashboardPath = `${this.prefix}/dashboard`;
+	public planningPath = `${this.prefix}/planning`;
+	public workdayPath = `${this.prefix}/workday`;
+	public profilPath = `${this.prefix}/profil`;
+	public parametersPath = `${this.prefix}/parameters`;
 
 	constructor(private router: Router) { }
 

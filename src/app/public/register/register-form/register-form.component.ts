@@ -21,7 +21,7 @@ export class RegisterFormComponent implements OnInit {
 				Validators.required,
 				Validators.minLength(4),
 				Validators.maxLength(20),
-				Validators.pattern("^[a-zA-Z0-9_-]*$")
+				Validators.pattern('^[a-zA-Z0-9_-]*$')
 			]],
 			'email': ['', [
 				Validators.required,
@@ -35,9 +35,9 @@ export class RegisterFormComponent implements OnInit {
 		});
 	}
 
-	get name() { return this.registerForm.get('name') }
-	get email() { return this.registerForm.get('email') }
-	get password() { return this.registerForm.get('password') }
+	get name() { return this.registerForm.get('name'); }
+	get email() { return this.registerForm.get('email'); }
+	get password() { return this.registerForm.get('password'); }
 
 	submit() {
 		console.info(this.name.value);

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'src/app/core/services/toastr.service';
 import { Observable } from 'rxjs';
 
-interface Toastr { 
+interface Toastr {
   category: string;
   message: string;
-};
+}
 
 @Component({
   selector: 'al-toastr',
