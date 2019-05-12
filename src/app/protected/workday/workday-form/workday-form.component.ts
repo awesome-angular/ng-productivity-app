@@ -8,7 +8,7 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 })
 export class WorkdayFormComponent implements OnInit {
 
-	private workdayForm: FormGroup;
+	workdayForm: FormGroup;
 
 	constructor(private fb: FormBuilder) { }
 

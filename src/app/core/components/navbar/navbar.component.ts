@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-	private homePath: string = 'home';
-	private loginPath: string = 'login';
-	private registerPath: string = 'register';
+	public homePath: string = 'home';
+	public loginPath: string = 'login';
+	public registerPath: string = 'register';
 
 	constructor(private router: Router) { }
 

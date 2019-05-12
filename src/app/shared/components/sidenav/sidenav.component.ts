@@ -8,19 +8,19 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent implements OnInit {
 
-	private prefix: string = 'app';
-	private dashboardPath: string = `${this.prefix}/dashboard`;
-	private planningPath: string = `${this.prefix}/planning`;
-	private workdayPath: string = `${this.prefix}/workday`;
-	private profilPath: string = `${this.prefix}/profil`;
-	private parametersPath: string = `${this.prefix}/parameters`;
+	public prefix: string = 'app';
+	public dashboardPath: string = `${this.prefix}/dashboard`;
+	public planningPath: string = `${this.prefix}/planning`;
+	public workdayPath: string = `${this.prefix}/workday`;
+	public profilPath: string = `${this.prefix}/profil`;
+	public parametersPath: string = `${this.prefix}/parameters`;
 
 	constructor(private router: Router) { }
 
 	ngOnInit() {
 	}
 
-	private navigate(page: string): void {
+	public navigate(page: string): void {
 		this.router.navigate([page]);
 	}
 
