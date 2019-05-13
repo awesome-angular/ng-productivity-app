@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LayoutService } from 'src/app/core/services/layout.service';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'al-protected',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProtectedComponent implements OnInit {
 
-	constructor() { }
+	public isSidenavCollapsed$: Observable<boolean>;
+
+	constructor(private layoutService: LayoutService) { }
 
 	ngOnInit() {
+		this.isSidenavCollapsed$ = this.layoutService.isSidenavCollapsed$;
 	}
 
 }
