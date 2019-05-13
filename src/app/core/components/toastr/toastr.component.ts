@@ -23,4 +23,8 @@ export class ToastrComponent implements OnInit {
     this.toastr$ = this.toastrService.toastr$;
   }
 
+  closeToastr() {
+    this.toastrService.closeToastr();
+  }
+
 }
