@@ -5,6 +5,7 @@
 
 /* Material icons */
 .material-icons {
+  cursor: pointer;
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
@@ -37,7 +38,7 @@
 .material-icons.md-48 { font-size: 48px; }
 
 /* Rules to set different colors to icons. */
-.material-icons.md-grey { color: rgb(155, 155, 155); cursor: pointer; }
+.material-icons.md-grey { color: rgb(155, 155, 155); }
 .material-icons.md-grey:hover { color: rgb(105, 105, 105) !important; }
-.material-icons.md-dark-grey { color: rgb(85, 85, 85); cursor: pointer; }
+.material-icons.md-dark-grey { color: rgb(85, 85, 85); }
 .material-icons.md-dark-grey:hover { color: rgb(65, 65, 65) !important; }
