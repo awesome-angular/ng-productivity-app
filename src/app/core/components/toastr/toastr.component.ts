@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'src/app/core/services/toastr.service';
 import { Observable } from 'rxjs';
-
-interface Toastr {
-  category: string;
-  message: string;
-}
+import { Toastr } from 'src/app/shared/models/toastr';
 
 @Component({
   selector: 'al-toastr',
@@ -14,7 +10,7 @@ interface Toastr {
 })
 export class ToastrComponent implements OnInit {
 
-  public toastr$: Observable<Toastr | null>;
+  public toastr$: Observable<Toastr|null>;
 
 
   constructor(private toastrService: ToastrService) { }

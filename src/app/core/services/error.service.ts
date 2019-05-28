@@ -10,7 +10,10 @@ export class ErrorService {
   constructor(private toastrService: ToastrService) { }
 
   public handleError(error) {
-		this.toastrService.showToastr('danger', error.message);
+		this.toastrService.showToastr({
+      category: 'danger',
+      message: error.message
+    });
 		return throwError(error);
 	}
 }

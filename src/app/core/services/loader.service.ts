@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class LoaderService {
 
   private isLoading: BehaviorSubject<boolean> = new BehaviorSubject(false);
-	public readonly isLoading$: any = this.isLoading.asObservable();
+	public readonly isLoading$: Observable<boolean> = this.isLoading.asObservable();
 
   constructor() { }
 
