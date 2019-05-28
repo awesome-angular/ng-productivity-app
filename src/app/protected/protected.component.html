@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row sidenav">
-    <div *ngIf="!(isSidenavCollapsed$ | async)" class="col-md-3 card px-0">
+    <div *ngIf="!isSidenavCollapsed" class="col-md-3 card px-0">
       <al-sidenav></al-sidenav>
     </div>
-    <div [ngClass]="{'offset-md-1 col-md-7': !(isSidenavCollapsed$ | async), 'col-md-9 mx-auto': isSidenavCollapsed$ | async}" 
+    <div [ngClass]="{'offset-md-1 col-md-7': !isSidenavCollapsed, 'col-md-9 mx-auto': isSidenavCollapsed}" 
         class="mt-5">
       <router-outlet></router-outlet>
     </div>
