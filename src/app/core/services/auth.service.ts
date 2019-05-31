@@ -4,6 +4,7 @@ import { delay, tap } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/user';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   public register(name: string, email: string, password: string): Observable<User|null> {
-    const API_KEY: string = 'AIzaSyAkgLyl4GXcHXe1Y7NhjPpntXVQ0fCsOuc';
-    const API_AUTH_BASEURL: string = `https://www.googleapis.com/identitytoolkit/v3/relyingparty`;
-    const registerEndpoint: string = `${API_AUTH_BASEURL}/signupNewUser?key=${API_KEY}`;
+    const url: string = `${environment.firebase.auth.baseURL}/signupNewUser?key=${environment.firebase.apiKey}`;
     
     const data = {
       email: email,
@@ -30,7 +29,7 @@ export class AuthService {
       headers: new HttpHeaders({'Content-Type':  'application/json'})
     };
 
-    return this.http.post<User>(registerEndpoint, data, httpOptions);
+    return this.http.post<User>(url, data, httpOptions);
   }
 
   public login(email: string, password: string): Observable<User|null> {
