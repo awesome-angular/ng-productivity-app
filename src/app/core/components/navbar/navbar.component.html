@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-light bg-light">
 
-  <a (click)="toggleSidenav()" class="nav-link text-left">
+  <a *ngIf="user$|async" (click)="toggleSidenav()" class="nav-link text-left">
     <i class="material-icons align-middle">menu</i>
   </a>
 

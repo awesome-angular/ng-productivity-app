@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/user';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
@@ -40,7 +40,8 @@ export class AuthService {
         });
 
         return this.usersService.save(user, jwt);
-      })
+      }),
+      tap(user => this.user.next(user))
     );
   }
 

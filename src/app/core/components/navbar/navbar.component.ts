@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/core/services/layout.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/shared/models/user';
 
 @Component({
 	selector: 'al-navbar',
@@ -12,10 +15,15 @@ export class NavbarComponent implements OnInit {
 	public homePath = 'home';
 	public loginPath = 'login';
 	public registerPath = 'register';
+	public user$: Observable<User|null>;
 
-	constructor(private router: Router, private layoutService: LayoutService) { }
+	constructor(
+		private router: Router,
+		private layoutService: LayoutService,
+		private authService: AuthService) { }
 
 	ngOnInit() {
+		this.user$ = this.authService.user$;
 	}
 
 	public isActive(page: string): boolean {
@@ -29,6 +37,5 @@ export class NavbarComponent implements OnInit {
 	public toggleSidenav() {
 		this.layoutService.toggleSidenav();
 	}
-
 
 }
