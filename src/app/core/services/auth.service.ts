@@ -56,7 +56,17 @@ export class AuthService {
   }
 
   public login(email: string, password: string): Observable<User|null> {
-    return of(new User());
+    const url = `${environment.firebase.auth.baseURL}/verifyPassword?key=${environment.firebase.apiKey}`;
+    const data = {
+      email: email,
+      password: password,
+      returnSecureToken: true
+    };
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type':  'application/json'})
+    };
+
+    return this.http.post<User>(url, data, httpOptions);
   }
 
   public logout(): Observable<null> {
