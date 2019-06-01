@@ -10,7 +10,7 @@ export class LayoutService {
 	public readonly isSidenavCollapsed$: Observable<boolean> = this.isSidenavCollapsed.asObservable();
 
 	constructor() { }
-  
+
   public toggleSidenav() {
     this.isSidenavCollapsed.next(!this.isSidenavCollapsed.value);
   }

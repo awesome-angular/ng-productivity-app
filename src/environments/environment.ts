@@ -13,6 +13,9 @@ export const environment = {
 		messagingSenderId: '1039499474549',
 		auth: {
 			baseURL: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty'
+		},
+		firestore: {
+			baseURL : 'https://firestore.googleapis.com/v1/projects/ng-awesome-list/databases/(default)/documents'
 		}
 	}
 };
