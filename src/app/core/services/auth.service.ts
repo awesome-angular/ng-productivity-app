@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 import { UsersService } from 'src/app/core/services/users.service';
 import { ErrorService } from 'src/app/core/services/error.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class AuthService {
     private http: HttpClient,
     private usersService: UsersService,
     private errorService: ErrorService,
-    private loaderService: LoaderService) { }
+    private loaderService: LoaderService,
+    private router: Router) { }
 
   public register(name: string, email: string, password: string): Observable<User|null> {
     const url = `${environment.firebase.auth.baseURL}/signupNewUser?key=${environment.firebase.apiKey}`;
@@ -80,7 +82,8 @@ export class AuthService {
     );
   }
 
-  public logout(): Observable<null> {
-    return of(null);
+  public logout(): void {
+    this.user.next(null);
+    this.router.navigate(['/login']);
   }
 }
