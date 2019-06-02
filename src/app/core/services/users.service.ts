@@ -49,18 +49,18 @@ export class UsersService {
 
   private getSructuredQuery(userId: string): Object {
     return {
-      "structuredQuery": {
-        "from": [{
-          "collectionId": "users"
+      'structuredQuery': {
+        'from': [{
+          'collectionId': 'users'
         }],
-        "where": {
-          "fieldFilter": {
-            "field": { "fieldPath": "id" },
-            "op": "EQUAL",
-            "value": { "stringValue": userId }
+        'where': {
+          'fieldFilter': {
+            'field': { 'fieldPath': 'id' },
+            'op': 'EQUAL',
+            'value': { 'stringValue': userId }
           }
         },
-        "limit": 1
+        'limit': 1
       }
     };
   }
