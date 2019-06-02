@@ -66,12 +66,17 @@ export class AuthService {
       headers: new HttpHeaders({'Content-Type':  'application/json'})
     };
 
+    this.loaderService.setLoading(true);
+
     return this.http.post<User>(url, data, httpOptions).pipe(
       switchMap((data: any) => {
         const userId: string = data.localId;
         const jwt: string = data.idToken;
         return this.usersService.get(userId, jwt);
-      })
+      }),
+      tap(user => this.user.next(user)),
+      catchError(error => this.errorService.handleError(error)),
+      finalize(() => this.loaderService.setLoading(false))
     );
   }
 
