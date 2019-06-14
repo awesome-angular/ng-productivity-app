@@ -12,23 +12,23 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'dashboard',
-				loadChildren: './dashboard/dashboard.module#DashboardModule',
+				loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
 			},
 			{
 				path: 'parameters',
-				loadChildren: './parameters/parameters.module#ParametersModule'
+				loadChildren: () => import('./parameters/parameters.module').then(m => m.ParametersModule)
 			},
 			{
 				path: 'planning',
-				loadChildren: './planning/planning.module#PlanningModule'
+				loadChildren: () => import('./planning/planning.module').then(m => m.PlanningModule)
 			},
 			{
 				path: 'profil',
-				loadChildren: './profil/profil.module#ProfilModule'
+				loadChildren: () => import('./profil/profil.module').then(m => m.ProfilModule)
 			},
 			{
 				path: 'workday',
-				loadChildren: './workday/workday.module#WorkdayModule'
+				loadChildren: () => import('./workday/workday.module').then(m => m.WorkdayModule)
 			}
 		]
 	}

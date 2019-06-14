@@ -6,11 +6,11 @@ const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{
 		path: 'login',
-		loadChildren: './login/login.module#LoginModule'
+		loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
 	},
 	{
 		path: 'register',
-		loadChildren: './register/register.module#RegisterModule'
+		loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
 	}
 ];
 
