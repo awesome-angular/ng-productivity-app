@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/shared/models/user';
 import { environment } from '../../../environments/environment';
 import { Observable, of } from 'rxjs';
-import { tap, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
