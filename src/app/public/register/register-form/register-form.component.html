@@ -6,7 +6,7 @@
     <input id="name" type="name" formControlName="name" class="form-control" placeholder="Votre peusdonyme" autocorrect="off"/>
     <small *ngIf="name.errors && name.dirty" class="form-text text-muted">
       <span [hidden]="!name.errors.required">Nom requis.</span>
-      <span [hidden]="!name.errors.minlength">Le nom doit faire plus de 6 caractères.</span>
+      <span [hidden]="!name.errors.minlength">Le nom doit faire plus de 4 caractères.</span>
       <span [hidden]="!name.errors.maxlength">Le nom doit faire moins de 20 caractères.</span>
       <span [hidden]="!name.errors.pattern">Le nom ne doit contenir que des lettres, des chiffres, '-' ou '_'.</span>
     </small>
