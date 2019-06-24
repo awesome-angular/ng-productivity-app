@@ -12,7 +12,7 @@ export class User {
 		avatar?: string,
 		pomodoroDuration?: number,
 	} = {}) {
-		this.id = options.id || '';
+		this.id = options.id || null;
 		this.email = options.email || '';
 		this.name = options.name || '';
 		this.avatar = options.avatar || '';
