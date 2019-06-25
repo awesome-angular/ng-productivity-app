@@ -48,7 +48,7 @@ export class AuthService {
           id: data.localId,
           name: name
         });
-        this.saveAuthData(jwt, user.id);
+        this.saveAuthData(user.id, jwt);
         return this.usersService.save(user, jwt);
       }),
       tap(user => this.user.next(user)),
@@ -75,7 +75,7 @@ export class AuthService {
       switchMap((data: any) => {
         const userId: string = data.localId;
         const jwt: string = data.idToken;
-        this.saveAuthData(jwt, userId);
+        this.saveAuthData(userId, jwt);
         return this.usersService.get(userId, jwt);
       }),
       tap(user => this.user.next(user)),
@@ -99,7 +99,7 @@ export class AuthService {
     ).subscribe(_ => this.logout());
   }
 
-  private saveAuthData(token: string, userId: string) {
+  private saveAuthData(userId: string, token: string) {
     const now = new Date();
     const expirationDate = (now.getTime() + 3600 * 1000).toString();
     localStorage.setItem('expirationDate', expirationDate);
