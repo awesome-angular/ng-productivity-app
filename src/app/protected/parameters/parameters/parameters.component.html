@@ -1,1 +1,13 @@
 <h1>Paramètres</h1>
+
+<form [formGroup]="parametersForm" (ngSubmit)="onSubmit()">
+
+  <select formControlName="pomodoro" class="form-control">
+     <option value="" disabled>Choisissez la durée de vos Pomodoros</option>
+     <option *ngFor="let pomodoro of pomodoros" [ngValue]="pomodoro">{{ pomodoro }}</option>
+  </select>
+
+  <div class="text-right mt-3">
+    <button type="submit" [disabled]="!parametersForm.valid" class="btn btn-success">Sauvegarder</button>
+  </div>
+</form>
