@@ -22,4 +22,8 @@ export class User {
 	get roles() {
 		return this.email.endsWith('google.com') ? ['USER', 'EMPLOYEE'] : ['USER'];
 	}
+
+	hasRole(role: string) {
+		return this.roles.includes(role);
+	}
 }

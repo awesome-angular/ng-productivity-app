@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProtectedComponent } from './protected.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { RoleGuard } from '../core/guards/role.guard';
 
 const routes: Routes = [
 	{
@@ -16,7 +17,8 @@ const routes: Routes = [
 			},
 			{
 				path: 'parameters',
-				loadChildren: () => import('./parameters/parameters.module').then(m => m.ParametersModule)
+				loadChildren: () => import('./parameters/parameters.module').then(m => m.ParametersModule),
+				canActivate: [RoleGuard]
 			},
 			{
 				path: 'planning',
