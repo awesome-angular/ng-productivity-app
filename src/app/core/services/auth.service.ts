@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/core/services/users.service';
 import { ErrorService } from 'src/app/core/services/error.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { Router } from '@angular/router';
+import { ToastrService } from './toastr.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class AuthService {
     private http: HttpClient,
     private usersService: UsersService,
     private errorService: ErrorService,
+    private toastrService: ToastrService,
     private loaderService: LoaderService,
     private router: Router) { }
 
@@ -92,6 +94,24 @@ export class AuthService {
     this.user.next(null);
     this.router.navigate(['/login']);
   }
+
+  public updateUserState(user: User): Observable<User|null> {
+    this.loaderService.setLoading(true);
+
+    return this.usersService.update(user).pipe(
+      tap(user => this.user.next(user)),
+      tap(_ => this.toastrService.showToastr({
+        category: 'success',
+        message: 'Vos informations ont été mises à jour !'
+      })),
+      catchError(error => this.errorService.handleError(error)),
+      finalize(() => this.loaderService.setLoading(false))
+    );
+  }
+
+  get currentUser(): User {
+    return this.user.getValue();
+  }  
 
   private logoutTimer(expirationTime: number): void {
     of(true).pipe(
