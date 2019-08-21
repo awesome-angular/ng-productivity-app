@@ -14,7 +14,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   save(user: User, jwt: string): Observable<User|null> {
-    const url = `${environment.firebase.firestore.baseURL}/users?key=${environment.firebase.apiKey}`;
+    const url = `${environment.firebase.firestore.baseURL}/users?key=${environment.firebase.apiKey}&documentId=${user.id}`;
     const data = this.getDataForFirestore(user);
     const httpOptions = {
       headers: new HttpHeaders({
