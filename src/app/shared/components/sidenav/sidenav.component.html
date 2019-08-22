@@ -1,8 +1,11 @@
 <div class="sticky-top">
   <div class="nav flex-column">
-    <img class="card-img-top" src="assets/img/home-banner.jpg" alt="sidenav banner">
+    <div class="nav-cover">
+      <img class="card-img-top" src="assets/img/home-banner.jpg" alt="sidenav banner">
+      <img *ngIf="user.avatar" class="img-avatar rounded-circle" width="48" height="48" [src]="user.avatar" alt="sidenav avatar">
+    </div>
     <div class="card-header">
-      Menu
+      Bonjour, {{ user?.name }} !
     </div>
     <ul class="list-group list-group-flush">
       <li (click)="navigate(dashboardPath)" [class.list-group-item-success]="isActive(dashboardPath)" class="list-group-item">
