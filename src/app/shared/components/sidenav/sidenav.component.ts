@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 	templateUrl: './sidenav.component.html',
 	styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent implements OnInit, OnDestroy {
 
 	public prefix = 'app';
 	public dashboardPath = `${this.prefix}/dashboard`;
