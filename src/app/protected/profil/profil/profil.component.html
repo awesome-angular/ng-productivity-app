@@ -1,1 +1,33 @@
 <h1>Profil</h1>
+
+<form novalidate [formGroup]="profilForm" (ngSubmit)="submit()" class="card-body">
+
+  <!-- Name field -->
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" type="name" formControlName="name" class="form-control" placeholder="Votre peusdonyme" autocorrect="off"/>
+    <small *ngIf="name.errors && name.dirty" class="form-text text-muted">
+      <span [hidden]="!name.errors.required">Nom requis.</span>
+      <span [hidden]="!name.errors.minlength">Le nom doit faire plus de 4 caractères.</span>
+      <span [hidden]="!name.errors.maxlength">Le nom doit faire moins de 20 caractères.</span>
+      <span [hidden]="!name.errors.pattern">Le nom ne doit contenir que des lettres, des chiffres, '-' ou '_'.</span>
+    </small>
+  </div>
+
+  <!-- Avatar field -->
+  <div class="form-group">
+    <label for="avatar">Avatar</label>
+    <input id="avatar" type="avatar" formControlName="avatar" class="form-control" placeholder="Votre avatar" autocorrect="off"/>
+    <small *ngIf="avatar.errors && avatar.dirty" class="form-text text-muted">
+      <span [hidden]="!avatar.errors.pattern">Entrez une url valide.</span>
+    </small>
+  </div>
+
+  <!-- Submit form -->
+  <p class="text-center py-3">
+    <button type="submit" class="btn" [disabled]="!profilForm.valid" [ngClass]="{'btn-success' : profilForm.valid, 'btn-default' : !profilForm.valid}">
+      Sauvegarder
+    </button>
+  </p>
+</form>
+
