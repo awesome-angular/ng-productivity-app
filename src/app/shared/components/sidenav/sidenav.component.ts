@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
-import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'al-sidenav',
@@ -17,14 +17,19 @@ export class SidenavComponent implements OnInit {
 	public workdayPath = `${this.prefix}/workday`;
 	public profilPath = `${this.prefix}/profil`;
 	public parametersPath = `${this.prefix}/parameters`;
-	public user$: Observable<User|null>;
+	public subscription: Subscription;
+	public user: User;
 
 	constructor(
 		private router: Router,
 		private authService: AuthService) { }
 
 	ngOnInit() {
-		this.user$ = this.authService.user$;
+		this.subscription = this.authService.user$.subscribe(user => this.user = user);
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	public navigate(page: string): void {

@@ -21,12 +21,10 @@
         <i class="material-icons align-bottom mr-1">person</i>
         Profil
       </li>
-      <ng-container *ngIf="(user$ | async) as user">
-        <li *ngIf="user.hasRole('EMPLOYEE')" (click)="navigate(parametersPath)" [class.list-group-item-success]="isActive(parametersPath)" class="list-group-item">
-          <i class="material-icons align-bottom mr-1">settings</i>
-          Paramètres
-        </li>
-      </ng-container>
+      <li *ngIf="user.hasRole('EMPLOYEE')" (click)="navigate(parametersPath)" [class.list-group-item-success]="isActive(parametersPath)" class="list-group-item">
+        <i class="material-icons align-bottom mr-1">settings</i>
+        Paramètres
+      </li>
     </ul>
   </div>
 </div>
