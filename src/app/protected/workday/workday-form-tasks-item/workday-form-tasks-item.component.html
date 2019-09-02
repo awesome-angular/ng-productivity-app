@@ -4,8 +4,23 @@
     <input formControlName="title" type="text" class="form-control">
   </div>
   <div class="col-sm-5">
-    <span *ngIf="isLast && !isFirst" (click)="removeTask(index)">
-      <i class="material-icons md-18 md-grey align-middle">clear</i>
-    </span>
+    <div class="py-2 mb-0" dropdown>
+      <!-- Pomodoros -->
+      <input
+        formControlName="todo"
+        dropdownToggle
+        aria-controls="dropdown-todo"
+        class="text-center mb-3 mr-1 pomodoro-input"/>
+
+      <ul id="dropdown-todo" *dropdownMenu class="dropdown-menu"
+          role="menu" aria-labelledby="button-basic">
+        <li role="menuitem" *ngFor="let todo of [1,2,3,4,5]">
+          <span class="dropdown-item" (click)="selectTodo(todo)">{{ todo }}</span>
+        </li>
+      </ul>
+      <span *ngIf="isLast && !isFirst" (click)="removeTask(index)">
+        <i class="material-icons md-18 md-grey align-middle">clear</i>
+      </span>
+    </div>
   </div>
 </div>

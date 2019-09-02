@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class WorkdayFormTasksItemComponent implements OnInit {
 
-	@Input() task: FromGroup;
+	@Input() task: FormGroup;
 	@Input() index: number;
 	@Input() isFirst: boolean;
 	@Input() isLast: boolean;
@@ -22,6 +22,10 @@ export class WorkdayFormTasksItemComponent implements OnInit {
 
 	removeTask(index: number) {
 		this.removedTask.emit(index);
+	}
+
+	selectTodo(todo: number) {
+		this.task.patchValue({todo: todo});
 	}
 
 }
