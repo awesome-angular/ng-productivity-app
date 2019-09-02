@@ -10,6 +10,9 @@
     </al-workday-form-tasks-item>
   </div>
   <div class="text-center">
-    <al-workday-form-tasks-add (addedTask)="onAddedTask()"></al-workday-form-tasks-add>
+    <al-workday-form-tasks-add
+      *ngIf="tasks.controls.length < 6"
+      (addedTask)="onAddedTask()">
+    </al-workday-form-tasks-add>
   </div>
 </div>
