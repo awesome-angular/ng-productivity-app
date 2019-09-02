@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
 	selector: 'al-workday-form-tasks',
 	templateUrl: './workday-form-tasks.component.html',
-	styleUrls: ['./workday-form-tasks.component.scss']
+	styles: []
 })
 export class WorkdayFormTasksComponent implements OnInit {
 
@@ -27,7 +27,8 @@ export class WorkdayFormTasksComponent implements OnInit {
 				Validators.required,
 				Validators.min(1),
 				Validators.max(5)
-			]]
+			]],
+			'done': 0
 		});
 	}
 
