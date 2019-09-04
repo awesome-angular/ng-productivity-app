@@ -19,7 +19,7 @@ export class User {
 		this.pomodoroDuration = options.pomodoroDuration || 1500;
 	}
 
-	get roles() {
+	get roles(): string[] {
 		return this.email.endsWith('google.com') ? ['USER', 'EMPLOYEE'] : ['USER'];
 	}
 
