@@ -9,12 +9,14 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { ToastrComponent } from './components/toastr/toastr.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
 	declarations: [NavbarComponent, FooterComponent, PageNotFoundComponent, LoaderComponent, ToastrComponent],
 	imports: [
 		CommonModule,
+		BrowserAnimationsModule,
 		HttpClientModule,
 		PublicModule,
 		ProtectedModule,
