@@ -3,13 +3,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Workday } from 'src/app/shared/models/workday';
 import { Task } from 'src/app/shared/models/task';
+import { ToastrService } from './toastr.service';
+import { ErrorService } from './error.service';
+import { LoaderService } from './loader.service';
+import { tap, catchError, finalize } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkdaysService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private toastrService: ToastrService,
+    private errorService: ErrorService,
+    private loaderService: LoaderService) { }
 
   save(workday: Workday) {
     const url = `${environment.firebase.firestore.baseURL}/workdays?key=${environment.firebase.apiKey}`;
@@ -22,7 +30,16 @@ export class WorkdaysService {
       })
     };
 
-    return this.http.post(url, data, httpOptions);
+    this.loaderService.setLoading(true);
+
+    return this.http.post(url, data, httpOptions).pipe(
+      tap(_ => this.toastrService.showToastr({
+        category: 'success',
+        message: 'Votre journée de travail a été enregistré avec succès.'
+      })),
+      catchError(error => this.errorService.handleError(error)),
+      finalize(() => this.loaderService.setLoading(false))
+    );
   }
 
   private getWorkdayForFirestore(workday: Workday): Object {
