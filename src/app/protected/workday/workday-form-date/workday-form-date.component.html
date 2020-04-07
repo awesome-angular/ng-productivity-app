@@ -5,6 +5,7 @@
         <label class="mr-3">Date:</label>
         <input
           bsDatepicker
+          (bsValueChange)="selectDate($event)"
           [formControl]="dueDate"
           [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
           type="text"
