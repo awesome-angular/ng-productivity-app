@@ -94,6 +94,50 @@ export class WorkdaysService {
     );
   }
 
+  getWorkdayByUser(userId: string): any {
+    this.loaderService.setLoading(true);
+    const url = `${environment.firebase.firestore.baseURL}:runQuery?key=${environment.firebase.apiKey}`;
+    const data = this.getWorkdayByUserQuery(userId);
+    const jwt: string = localStorage.getItem('token');
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer ${jwt}`
+      })
+    };
+
+    return this.http.post(url, data, httpOptions).pipe(
+      switchMap((workdaysData: any) => {
+        const workdays: Workday[] = [];
+        workdaysData.forEach(data => {
+          const workday: Workday = this.getWorkdayFromFirestore(data.document.name, data.document.fields);
+          workdays.push(workday);
+        })
+        return of(workdays);
+      }),
+      catchError(error => this.errorService.handleError(error)),
+      finalize(() => this.loaderService.setLoading(false))
+    );
+  }
+
+  private getWorkdayByUserQuery(userId: string): Object {
+    return {
+      'structuredQuery': {
+        'from': [{
+          'collectionId': 'workdays'
+        }],
+        'where': {
+          'fieldFilter': {
+            'field': { 'fieldPath': 'userId' },
+            'op': 'EQUAL',
+            'value': { 'stringValue': userId }
+          }
+        }
+      }
+    };
+  }
+
   private getWorkdayFromFirestore(name, fields): Workday {
     const tasks: Task[] = [];
     const workdayId: string = name.split('/')[6];
