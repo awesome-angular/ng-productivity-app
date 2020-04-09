@@ -131,7 +131,12 @@ export class WorkdaysService {
             'op': 'EQUAL',
             'value': { 'stringValue': userId }
           }
-        }
+        },
+        "orderBy": [{
+          "field": {
+            "fieldPath": "dueDate"
+          },"direction": "DESCENDING"
+        }]
       }
     };
   }
