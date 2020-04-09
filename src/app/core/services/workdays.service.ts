@@ -95,7 +95,6 @@ export class WorkdaysService {
   }
 
   getWorkdayByUser(userId: string): any {
-    this.loaderService.setLoading(true);
     const url = `${environment.firebase.firestore.baseURL}:runQuery?key=${environment.firebase.apiKey}`;
     const data = this.getWorkdayByUserQuery(userId);
     const jwt: string = localStorage.getItem('token');
@@ -116,8 +115,7 @@ export class WorkdaysService {
         })
         return of(workdays);
       }),
-      catchError(error => this.errorService.handleError(error)),
-      finalize(() => this.loaderService.setLoading(false))
+      catchError(error => this.errorService.handleError(error))
     );
   }
 
