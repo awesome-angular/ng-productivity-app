@@ -3,6 +3,6 @@
     *ngFor="let workday of workdays$ | async"
     [workday]="workday"
     (workdayRemoved)="onWorkdayRemoved($event)"
-    class="col-md-4">
+    class="col-md-4 d-flex">
   </al-planning-workday-item>
 </div>

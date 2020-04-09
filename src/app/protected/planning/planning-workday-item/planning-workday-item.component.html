@@ -1,9 +1,15 @@
-<div class="card border-light mt-3">
+<div class="card border-light mt-3 flex-fill">
   <div class="card-header">
     {{ workday.displayDate }}
     <i class="material-icons md-grey float-right" (click)="removeWorkday(workday.displayDate)">close</i>
   </div>
   <div class="card-body">
-    <p>{{ workday.tasks | json }}</p>
+    <div *ngFor="let task of workday.tasks" class="mb-2">
+      <h4 *ngIf="task.completed"><i class="material-icons align-bottom mr-1">done_outline</i> {{ task.title }}</h4>
+      <h4 *ngIf="!task.completed"><i class="material-icons align-bottom mr-1">layers_clear</i> {{ task.title }}</h4>
+      <p *ngIf="!task.completed">Status: {{ task.done}}/{{task.todo }}</p>
+    </div>
+    <hr>
+    <p>{{ workday.notes }}</p>    
   </div>
 </div>
