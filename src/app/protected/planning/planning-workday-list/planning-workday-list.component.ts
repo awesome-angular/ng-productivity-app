@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkdaysService } from 'src/app/core/services/workdays.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { Observable } from 'rxjs';
+import { Workday } from 'src/app/shared/models/workday';
 
 @Component({
 	selector: 'al-planning-workday-list',
@@ -9,15 +11,15 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class PlanningWorkdayListComponent implements OnInit {
 
+	workdays$: Observable<Workday>;
+
 	constructor(
 		private authService: AuthService,
 		private workdaySerice: WorkdaysService) { }
 
 	ngOnInit() {
 		const id: string = this.authService.currentUser.id;
-		this.workdaySerice.getWorkdayByUser(id).subscribe(workdays => {
-			console.info(workdays);
-		});
+		this.workdays$ = this.workdaySerice.getWorkdayByUser(id);
 	}
 
 	onWorkdayRemoved(dueDate: string) {
