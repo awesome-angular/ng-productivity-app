@@ -3,7 +3,7 @@
     {{ workday.displayDate }}
     <i class="material-icons md-grey float-right" (click)="removeWorkday(workday.displayDate)">close</i>
   </div>
-  <div class="card-body">
+  <div class="card-body" (click)="goWorkday(workday)" style="cursor: pointer;">
     <div *ngFor="let task of workday.tasks" class="mb-2">
       <h4 *ngIf="task.completed"><i class="material-icons align-bottom mr-1">done_outline</i> {{ task.title }}</h4>
       <h4 *ngIf="!task.completed"><i class="material-icons align-bottom mr-1">layers_clear</i> {{ task.title }}</h4>
