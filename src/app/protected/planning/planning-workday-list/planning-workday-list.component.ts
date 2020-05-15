@@ -3,6 +3,7 @@ import { WorkdaysService } from 'src/app/core/services/workdays.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Observable } from 'rxjs';
 import { Workday } from 'src/app/shared/models/workday';
+import { filter } from 'rxjs/operators';
 
 @Component({
 	selector: 'al-planning-workday-list',
@@ -22,8 +23,11 @@ export class PlanningWorkdayListComponent implements OnInit {
 		this.workdays$ = this.workdaySerice.getWorkdayByUser(id);
 	}
 
-	onWorkdayRemoved(dueDate: string) {
-		console.info(dueDate);
+	onWorkdayRemoved(workday: Workday) {
+		this.workdaySerice.remove(workday)
+		.subscribe(_ => {
+			console.log(`${workday.id} has been removed from Firestore !`);
+		})
 	}
 
 }

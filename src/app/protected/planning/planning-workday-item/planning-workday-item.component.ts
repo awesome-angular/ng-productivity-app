@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
 export class PlanningWorkdayItemComponent implements OnInit {
 
 	@Input() workday: Workday;
-	@Output() workdayRemoved = new EventEmitter<string>();
+	@Output() workdayRemoved = new EventEmitter<Workday>();
 
 	constructor(private router: Router) {}
 
 	ngOnInit() {}
 
-	removeWorkday(displayDate: string) {
-		this.workdayRemoved.emit(displayDate);
+	removeWorkday() {
+		this.workdayRemoved.emit(this.workday);
 	}
 
 	goWorkday(workday: Workday) {
