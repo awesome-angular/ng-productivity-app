@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { switchMap, tap, catchError, finalize, delay } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/user';
-import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { UsersService } from 'src/app/core/services/users.service';
@@ -47,7 +46,7 @@ export class AuthService {
           name: name
         });
         this.saveAuthData(user.id, jwt);
-        return this.usersService.save(user, jwt);
+        return this.usersService.save(user);
       }),
       tap(user => this.user.next(user)),
       tap(_ => this.logoutTimer(3600)),
@@ -71,7 +70,7 @@ export class AuthService {
         const userId: string = data.localId;
         const jwt: string = data.idToken;
         this.saveAuthData(userId, jwt);
-        return this.usersService.get(userId, jwt);
+        return this.usersService.get(userId);
       }),
       tap(user => this.user.next(user)),
       tap(_ => this.logoutTimer(3600)),

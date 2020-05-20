@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/shared/models/user';
 import { environment } from '../../../environments/environment';
@@ -13,32 +12,22 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  save(user: User, jwt: string): Observable<User|null> {
+  save(user: User): Observable<User|null> {
     const url = `${environment.firebase.firestore.baseURL}/users?key=${environment.firebase.apiKey}&documentId=${user.id}`;
     const data = this.getDataForFirestore(user);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
-      })
-    };
 
-    return this.http.post(url, data, httpOptions).pipe(
+    return this.http.post(url, data, {}).pipe(
       switchMap((data: any) => {
         return of(this.getUserFromFirestore(data.fields));
       })
     );
   }
 
-  get(userId: string, jwt: string): Observable<User|null> {
+  get(userId: string): Observable<User|null> {
     const url = `${environment.firebase.firestore.baseURL}:runQuery?key=${environment.firebase.apiKey}`;
     const data = this.getSructuredQuery(userId);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
-      })
-    };
 
-    return this.http.post(url, data, httpOptions).pipe(
+    return this.http.post(url, data, {}).pipe(
       switchMap((data: any) => {
         return of(this.getUserFromFirestore(data[0].document.fields));
       })
@@ -48,13 +37,8 @@ export class UsersService {
   update(user: User): Observable<User|null> {
     const url = `${environment.firebase.firestore.baseURL}/users/${user.id}?key=${environment.firebase.apiKey}&currentDocument.exists=true`;
     const data = this.getDataForFirestore(user);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      })
-    };
 
-    return this.http.patch(url, data, httpOptions).pipe(
+    return this.http.patch(url, data, {}).pipe(
       switchMap((data: any) => {
         return of(this.getUserFromFirestore(data.fields));
       })

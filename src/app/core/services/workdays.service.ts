@@ -25,16 +25,9 @@ export class WorkdaysService {
   save(workday: Workday) {
     const url = `${environment.firebase.firestore.baseURL}/workdays?key=${environment.firebase.apiKey}`;
     const data = this.getWorkdayForFirestore(workday);
-    const jwt: string = localStorage.getItem('token');
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
-      })
-    };
-
     this.loaderService.setLoading(true);
 
-    return this.http.post(url, data, httpOptions).pipe(
+    return this.http.post(url, data, {}).pipe(
       tap(_ => this.toastrService.showToastr({
         category: 'success',
         message: 'Votre journée de travail a été enregistré avec succès.'
@@ -47,14 +40,8 @@ export class WorkdaysService {
   update(workday: Workday) {
     const url = `${environment.firebase.firestore.baseURL}/workdays/${workday.id}?key=${environment.firebase.apiKey}&currentDocument.exists=true`;
     const data = this.getWorkdayForFirestore(workday);
-    const jwt: string = localStorage.getItem('token');
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
-      })
-    };
 
-    return this.http.patch(url, data, httpOptions).pipe(
+    return this.http.patch(url, data, {}).pipe(
       tap(_ => this.toastrService.showToastr({
         category: 'success',
         message: 'Votre journée de travail a été sauvegardé avec succès.'
@@ -66,14 +53,8 @@ export class WorkdaysService {
 
   remove(workday: Workday) {
     const url = `${environment.firebase.firestore.baseURL}/workdays/${workday.id}?key=${environment.firebase.apiKey}`;
-    const jwt: string = localStorage.getItem('token');
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
-      })
-    };
 
-    return this.http.delete(url, httpOptions).pipe(
+    return this.http.delete(url, {}).pipe(
       tap(_ => this.toastrService.showToastr({
         category: 'success',
         message: 'Votre journée de travail a été supprimé avec succès.'
@@ -91,15 +72,8 @@ export class WorkdaysService {
   getWorkdayByDate(date: string): Observable<Workday|null> {
     const url = `${environment.firebase.firestore.baseURL}:runQuery?key=${environment.firebase.apiKey}`;
     const data = this.getSructuredQuery(date);
-    const jwt: string = localStorage.getItem('token');
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
-      })
-    };
-
-    return this.http.post(url, data, httpOptions).pipe(
+    return this.http.post(url, data, {}).pipe(
       switchMap((data: any) => {
         const document = data[0].document;
         if(!document) { 
@@ -113,15 +87,8 @@ export class WorkdaysService {
   getWorkdayByUser(userId: string): any {
     const url = `${environment.firebase.firestore.baseURL}:runQuery?key=${environment.firebase.apiKey}`;
     const data = this.getWorkdayByUserQuery(userId);
-    const jwt: string = localStorage.getItem('token');
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
-      })
-    };
-
-    return this.http.post(url, data, httpOptions).pipe(
+    return this.http.post(url, data, {}).pipe(
       switchMap((workdaysData: any) => {
         const workdays: Workday[] = [];
         workdaysData.forEach(data => {

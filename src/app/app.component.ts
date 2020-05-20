@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
 		}
 
 		const userId = localStorage.getItem('userId');
-		this.usersService.get(userId, token).subscribe(user => {
+		this.usersService.get(userId).subscribe(user => {
 			this.authService.autoLogin(user);
 		});
 	}
