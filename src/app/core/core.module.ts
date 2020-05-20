@@ -10,7 +10,8 @@ import { ToastrComponent } from './components/toastr/toastr.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
 	declarations: [NavbarComponent, FooterComponent, PageNotFoundComponent, LoaderComponent, ToastrComponent],
@@ -28,6 +29,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		PageNotFoundComponent,
 		LoaderComponent,
 		ToastrComponent,
+	],
+	providers: [
+		{
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
 	]
 })
 export class CoreModule {
