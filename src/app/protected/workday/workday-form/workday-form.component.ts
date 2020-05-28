@@ -40,7 +40,8 @@ export class WorkdayFormComponent implements OnInit {
 	get tasks() { return this.workdayForm.get('tasks') as FormArray; }
 
 	onDateSelected(displayDate: string) {
-		this.workdaysService.getWorkdayByDate(displayDate).subscribe(workday => {
+		const userId: string = this.authService.currentUser.id;
+		this.workdaysService.getWorkdayByDate(displayDate, userId).subscribe(workday => {
 			this.resetWorkdayForm();
 			
 			if(!workday) return;

@@ -69,9 +69,9 @@ export class WorkdaysService {
    * 
    * @params date - 20/04/2020 
    */
-  getWorkdayByDate(date: string): Observable<Workday|null> {
+  getWorkdayByDate(date: string, userId: string): Observable<Workday|null> {
     const url = `${environment.firebase.firestore.baseURL}:runQuery?key=${environment.firebase.apiKey}`;
-    const data = this.getSructuredQuery(date);
+    const data = this.getSructuredQuery(date, userId);
 
     return this.http.post(url, data, {}).pipe(
       switchMap((data: any) => {
@@ -149,17 +149,31 @@ export class WorkdaysService {
     });
   }
 
-  private getSructuredQuery(date: string): Object {
+  private getSructuredQuery(date: string, userId: string): Object {
     return {
       'structuredQuery': {
         'from': [{
           'collectionId': 'workdays'
         }],
         'where': {
-          'fieldFilter': {
-            'field': { 'fieldPath': 'displayDate' },
-            'op': 'EQUAL',
-            'value': { 'stringValue': date }
+          'compositeFilter': {
+            'op': 'AND',
+            'filters': [
+              {
+                'fieldFilter': {
+                  'field': { 'fieldPath': 'displayDate' },
+                  'op': 'EQUAL',
+                  'value': { 'stringValue': date }
+                }
+              },
+              {
+                'fieldFilter': {
+                  'field': { 'fieldPath': 'userId' },
+                  'op': 'EQUAL',
+                  'value': { 'stringValue': userId }
+                }
+              }
+            ]
           }
         },
         'limit': 1
