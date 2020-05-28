@@ -92,8 +92,10 @@ export class WorkdaysService {
       switchMap((workdaysData: any) => {
         const workdays: Workday[] = [];
         workdaysData.forEach(data => {
-          const workday: Workday = this.getWorkdayFromFirestore(data.document.name, data.document.fields);
-          workdays.push(workday);
+          if (data && data.document) {
+            const workday: Workday = this.getWorkdayFromFirestore(data.document.name, data.document.fields);
+            workdays.push(workday);
+          }
         })
         return of(workdays);
       }),
