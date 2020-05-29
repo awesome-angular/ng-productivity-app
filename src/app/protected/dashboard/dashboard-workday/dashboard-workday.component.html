@@ -1,0 +1,24 @@
+<al-dashboard-pomodoro-progress>
+</al-dashboard-pomodoro-progress>
+
+<div class="text-center my-3">
+  <button class="btn btn-success btn-sm">
+    Démarrer le Pomodoro
+  </button>
+</div>
+
+<div class="text-center my-3">
+  <button class="btn btn-sm mr-1">
+    Annuler le Pomodoro
+  </button>
+  <button class="btn btn-success btn-sm">
+    Terminé le Pomodoro
+  </button>
+</div>
+
+<div>
+  <al-dashboard-task-item 
+    *ngFor="let task of workday.tasks" 
+    [task]="task">
+  </al-dashboard-task-item>
+</div>

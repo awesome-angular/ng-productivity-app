@@ -3,26 +3,14 @@
   <small class="text-muted"> - {{ currentDate }}</small>
 </h1>
 
-<al-dashboard-pomodoro-progress></al-dashboard-pomodoro-progress>
+<al-dashboard-workday 
+  *ngIf="(workday$ | async) as workday; else emptyWorkday"
+  [workday]="workday">
+</al-dashboard-workday>
 
-<div class="text-center my-3">
-  <button class="btn btn-success btn-sm">
-    Démarrer le Pomodoro
-  </button>
-</div>
+<ng-template #emptyWorkday>
+  <p class="text-center lead m-5">
+    {{ currentUser.name }}, pas de travail pour aujourd'hui !
+  </p>
+</ng-template>
 
-<div class="text-center my-3">
-  <button class="btn btn-sm mr-1">
-    Annuler le Pomodoro
-  </button>
-  <button class="btn btn-success btn-sm">
-    Terminé le Pomodoro
-  </button>
-</div>
-
-<div *ngIf="(workday$ | async) as workday">
-  <al-dashboard-task-item 
-    *ngFor="let task of workday.tasks" 
-    [task]="task">
-  </al-dashboard-task-item>
-</div>
