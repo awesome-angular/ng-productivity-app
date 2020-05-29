@@ -9,6 +9,7 @@ import { Workday } from 'src/app/shared/models/workday';
 export class DashboardWorkdayComponent implements OnInit {
 
   @Input() workday: Workday;
+  isPomodoroActive: boolean = false;
 
   constructor() { }
 
