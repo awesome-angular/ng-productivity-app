@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'al-dashboard-pomodoro-progress',
@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPomodoroProgressComponent implements OnInit {
 
-  constructor() { }
+  currentProgress: number;
+
+  @Input()
+  set progress(progress) {
+    this.currentProgress = progress;
+    this.computePercentage();
+  }
+
+  @Input() maxProgress: number;
+  percentage: number;
 
   ngOnInit() {
+  }
+
+  computePercentage() {
+    if(!this.currentProgress || !this.maxProgress) {
+      this.percentage = 0;
+      return;
+    }
+    this.percentage = Math.floor(this.currentProgress/this.maxProgress * 100);
   }
 
 }

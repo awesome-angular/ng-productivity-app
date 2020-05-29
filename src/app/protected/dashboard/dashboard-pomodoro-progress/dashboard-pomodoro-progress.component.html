@@ -1,7 +1,13 @@
 <div class="offset-md-2 col-md-8">
   <div class="card">
     <div class="card-body">
-      <progressbar max="1500" [value]="750" type="success" [striped]="true" [animate]="true"><i>50%</i></progressbar>
+      <progressbar
+        [value]="percentage" 
+        type="success"
+        [striped]="true"
+        [animate]="true">
+        <i>{{percentage}}%</i>
+      </progressbar>
     </div>
   </div>
 </div>
