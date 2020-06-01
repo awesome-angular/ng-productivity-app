@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { Workday } from 'src/app/shared/models/workday';
 import { fromEvent, Subject, timer, interval, Observable } from 'rxjs';
 import { tap, takeUntil, map } from 'rxjs/operators';
+import { Task } from 'src/app/shared/models/task';
 
 @Component({
   selector: 'al-dashboard-workday',
@@ -18,6 +19,7 @@ export class DashboardWorkdayComponent implements OnInit {
   currentProgress: number;
   maxProgress: number;
   pomodoro$: Observable<number>;
+  currentTask: Task;
 
   constructor() { }
 
@@ -55,6 +57,16 @@ export class DashboardWorkdayComponent implements OnInit {
     this.completePomodoro$.next('complete');
     this.isPomodoroActive = false;
     console.log("pomodoro complete !");
+    // Ajouter un done à la tâche en cours.
+    // 👉 Il me faut la tâche courante
+    this.currentTask = this.getCurrentTask();
+    // 👉 Mettre à jour cette tâche avec done + 1, en local + Firestore.
+    // 👉 Si tous les done sont terminés, alors marquer la tâche commme complete.
+    // 👉 Si toutes les tâches sont complete, alors marquer la journée comme terminé.
+  }
+
+  getCurrentTask(): Task {
+    return this.workday.tasks.find(task => task.todo > task.done)
   }
 
 }
