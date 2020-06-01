@@ -1,27 +1,34 @@
-<al-dashboard-pomodoro-progress 
-  *ngIf="isPomodoroActive"
-  [progress]="currentProgress"
-  [maxProgress]="maxProgress">
-</al-dashboard-pomodoro-progress>
+<div *ngIf="!isWorkdayComplete">
+  <al-dashboard-pomodoro-progress 
+    *ngIf="isPomodoroActive"
+    [progress]="currentProgress"
+    [maxProgress]="maxProgress">
+  </al-dashboard-pomodoro-progress>
 
-<div *ngIf="!isPomodoroActive" class="text-center my-3">
-  <button (click)="startPomodoro()" class="btn btn-success btn-sm">
-    Démarrer le Pomodoro
-  </button>
+  <div *ngIf="!isPomodoroActive" class="text-center my-3">
+    <button (click)="startPomodoro()" class="btn btn-success btn-sm">
+      Démarrer le Pomodoro
+    </button>
+  </div>
+
+  <div *ngIf="isPomodoroActive" class="text-center my-3">
+    <button (click)="cancelPomodoro()" class="btn btn-sm mr-1">
+      Annuler le Pomodoro
+    </button>
+    <button (click)="completePomodoro()" class="btn btn-success btn-sm">
+      Terminer le Pomodoro
+    </button>
+  </div>
+
+  <div>
+    <al-dashboard-task-item 
+      *ngFor="let task of workday.tasks" 
+      [task]="task">
+    </al-dashboard-task-item>
+  </div>
 </div>
 
-<div *ngIf="isPomodoroActive" class="text-center my-3">
-  <button (click)="cancelPomodoro()" class="btn btn-sm mr-1">
-    Annuler le Pomodoro
-  </button>
-  <button (click)="completePomodoro()" class="btn btn-success btn-sm">
-    Terminer le Pomodoro
-  </button>
-</div>
-
-<div>
-  <al-dashboard-task-item 
-    *ngFor="let task of workday.tasks" 
-    [task]="task">
-  </al-dashboard-task-item>
+<div *ngIf="isWorkdayComplete" class="text-center mt-5">
+  <p *ngFor="let task of workday.tasks"><s>{{ task.title }}</s></p>
+  <p class="display-4">Job Done ! 🎉👍</p>
 </div>

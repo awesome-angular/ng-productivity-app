@@ -3,6 +3,7 @@ import { Workday } from 'src/app/shared/models/workday';
 import { Subject, interval, Observable, of } from 'rxjs';
 import { takeUntil, map, takeWhile, delay } from 'rxjs/operators';
 import { Task } from 'src/app/shared/models/task';
+import { WorkdaysService } from 'src/app/core/services/workdays.service';
 
 @Component({
   selector: 'al-dashboard-workday',
@@ -12,6 +13,7 @@ import { Task } from 'src/app/shared/models/task';
 export class DashboardWorkdayComponent implements OnInit {
 
   @Input() workday: Workday;
+  isWorkdayComplete: boolean;
   isPomodoroActive: boolean;
   startPomodoro$: Subject<string>;
   cancelPomodoro$: Subject<string>;
@@ -21,9 +23,10 @@ export class DashboardWorkdayComponent implements OnInit {
   pomodoro$: Observable<number>;
   currentTask: Task;
 
-  constructor() { }
+  constructor(private workdaysService: WorkdaysService) { }
 
   ngOnInit(): void {
+    this.isWorkdayComplete = (this.task === undefined);
     this.isPomodoroActive = false;
     this.startPomodoro$ = new Subject();
     this.cancelPomodoro$ = new Subject();
@@ -36,6 +39,10 @@ export class DashboardWorkdayComponent implements OnInit {
       takeWhile(progress => progress <= this.maxProgress),
       map(x => x + 1)
     );
+  }
+
+  get task(): Task|undefined {
+    return this.workday.tasks.find((task: Task) => task.todo > task.done);
   }
 
   startPomodoro() {
@@ -59,18 +66,12 @@ export class DashboardWorkdayComponent implements OnInit {
   completePomodoro() {
     this.completePomodoro$.next('complete');
     this.isPomodoroActive = false;
-    console.log("pomodoro complete !");
-    // Ajouter un done à la tâche en cours.
-    // 👉 Il me faut la tâche courante
-    this.currentTask = this.getCurrentTask();
-    // 👉 Mettre à jour cette tâche avec done + 1, en local + Firestore.
-    this.currentTask.done++;
-    // 👉 Si tous les done sont terminés, alors marquer la tâche commme complete.
-    // 👉 Si toutes les tâches sont complete, alors marquer la journée comme terminé.
-  }
 
-  getCurrentTask(): Task {
-    return this.workday.tasks.find(task => task.todo > task.done)
-  }
+    // Complete current pomodoro
+    this.task.done++;
+    this.workdaysService.update(this.workday).subscribe();
 
+    // Check workday complete
+    this.isWorkdayComplete = (this.task === undefined);
+  }
 }
