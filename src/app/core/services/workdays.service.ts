@@ -181,8 +181,12 @@ export class WorkdaysService {
     };
   }
 
-  private getWorkdayForFirestore(workday: Workday): Object {
+  private getWorkdayForFirestore(workday: Workday): any {
+    if(typeof workday.dueDate === 'string') {
+      workday.dueDate = +workday.dueDate;
+    }
     const dueDate: number = new Date(workday.dueDate).getTime();
+    
     const displayDate: string = this.dateService.getDisplayDate(new Date(workday.dueDate));
     const tasks: Object = this.getTaskListForFirestore(workday.tasks);
 
