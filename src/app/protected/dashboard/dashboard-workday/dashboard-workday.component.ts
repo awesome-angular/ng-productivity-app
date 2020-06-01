@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { Workday } from 'src/app/shared/models/workday';
-import { fromEvent, Subject, timer, interval, Observable } from 'rxjs';
-import { tap, takeUntil, map } from 'rxjs/operators';
+import { fromEvent, Subject, timer, interval, Observable, of } from 'rxjs';
+import { tap, takeUntil, map, takeWhile, delay } from 'rxjs/operators';
 import { Task } from 'src/app/shared/models/task';
 
 @Component({
@@ -31,7 +31,9 @@ export class DashboardWorkdayComponent implements OnInit {
     this.currentProgress = 0
     this.maxProgress = 5;
     this.pomodoro$ = interval(1000).pipe(
-      takeUntil(timer(6000)),
+      takeUntil(this.cancelPomodoro$),
+      takeUntil(this.completePomodoro$),
+      takeWhile(progress => progress <= this.maxProgress),
       map(x => x + 1)
     );
   }
@@ -39,12 +41,13 @@ export class DashboardWorkdayComponent implements OnInit {
   startPomodoro() {
     this.startPomodoro$.next('start');
     this.isPomodoroActive = true;
-    this.pomodoro$.pipe(
-      takeUntil(this.cancelPomodoro$),
-      takeUntil(this.completePomodoro$),
-    ).subscribe({
-      next: currentProgress => this.currentProgress = currentProgress,
-      complete: () => this.completePomodoro()
+    this.pomodoro$.subscribe({
+      next: progress => {
+        this.currentProgress = progress;
+        if(progress === this.maxProgress) {
+          of(0).pipe(delay(500)).subscribe(_ => this.completePomodoro())
+        }
+      }
     });
   }
 
@@ -61,6 +64,7 @@ export class DashboardWorkdayComponent implements OnInit {
     // 👉 Il me faut la tâche courante
     this.currentTask = this.getCurrentTask();
     // 👉 Mettre à jour cette tâche avec done + 1, en local + Firestore.
+    this.currentTask.done++;
     // 👉 Si tous les done sont terminés, alors marquer la tâche commme complete.
     // 👉 Si toutes les tâches sont complete, alors marquer la journée comme terminé.
   }
