@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Workday } from 'src/app/shared/models/workday';
-import { fromEvent, Subject, timer, interval, Observable, of } from 'rxjs';
-import { tap, takeUntil, map, takeWhile, delay } from 'rxjs/operators';
+import { Subject, interval, Observable, of } from 'rxjs';
+import { takeUntil, map, takeWhile, delay } from 'rxjs/operators';
 import { Task } from 'src/app/shared/models/task';
 
 @Component({
