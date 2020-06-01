@@ -28,7 +28,10 @@ export class DashboardWorkdayComponent implements OnInit {
     this.completePomodoro$ = new Subject();
     this.currentProgress = 0
     this.maxProgress = 5;
-    this.pomodoro$ = interval(1000).pipe(map(x => x + 1));
+    this.pomodoro$ = interval(1000).pipe(
+      takeUntil(timer(6000)),
+      map(x => x + 1)
+    );
   }
 
   startPomodoro() {
@@ -37,8 +40,9 @@ export class DashboardWorkdayComponent implements OnInit {
     this.pomodoro$.pipe(
       takeUntil(this.cancelPomodoro$),
       takeUntil(this.completePomodoro$),
-    ).subscribe(currentProgress => {
-      this.currentProgress = currentProgress;
+    ).subscribe({
+      next: currentProgress => this.currentProgress = currentProgress,
+      complete: () => this.completePomodoro()
     });
   }
 
@@ -50,6 +54,7 @@ export class DashboardWorkdayComponent implements OnInit {
   completePomodoro() {
     this.completePomodoro$.next('complete');
     this.isPomodoroActive = false;
+    console.log("pomodoro complete !");
   }
 
 }
