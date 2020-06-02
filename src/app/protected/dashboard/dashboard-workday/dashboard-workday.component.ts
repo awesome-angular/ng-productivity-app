@@ -22,7 +22,6 @@ export class DashboardWorkdayComponent implements OnInit {
   currentProgress: number;
   maxProgress: number;
   pomodoro$: Observable<number>;
-  currentTask: Task;
 
   constructor(
     private workdaysService: WorkdaysService,
