@@ -12,24 +12,23 @@ import { filter } from 'rxjs/operators';
 })
 export class PlanningWorkdayListComponent implements OnInit {
 
-	workdays$: Observable<Workday>;
+	workdays: Workday[];
 
 	constructor(
 		private authService: AuthService,
-		private workdaySerice: WorkdaysService) { }
+		private workdayService: WorkdaysService) { }
 
 	ngOnInit() {
 		const id: string = this.authService.currentUser.id;
-		this.workdays$ = this.workdaySerice.getWorkdayByUser(id);
+		this.workdayService
+			.getWorkdayByUser(id)
+			.subscribe(workdays => this.workdays = workdays);
 	}
 
 	onWorkdayRemoved(workday: Workday) {
-		this.workdaySerice.remove(workday)
-		.subscribe(_ => {
-			this.workdays$ = this.workdays$.pipe(
-				filter(currentWorkday => currentWorkday.id != workday.id)
-			);
-		})
+		this.workdayService
+			.remove(workday)
+			.subscribe(_ => this.workdays = this.workdays.filter(el => el.id !== workday.id));
 	}
 
 }
